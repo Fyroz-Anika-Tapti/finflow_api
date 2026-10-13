@@ -1,18 +1,11 @@
 <?php
-
 include '../connection.php';
 
-$data = json_decode(
-    file_get_contents('php://input'),
-    true
-);
+$id=$_GET['id'];
 
-$id = $_GET['id'];
-
-$res = $cc->common_update(
-    'transactions',
-    $data,
-    ['id' => $id]
-);
-
+$res=[];
+if($_POST['user_id']){
+    $res=$cc->common_update('transactions', $_POST, ['id'=>$id]);
+}
 echo json_encode($res);
+
