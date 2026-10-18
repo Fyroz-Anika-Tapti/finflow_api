@@ -34,16 +34,14 @@ if (isset($_POST['transaction_date'])) {
                     $cr_row['created_at'] = date('Y-m-d H:i:s');
                     $ress = $cc->common_insert('transaction_details', $cr_row);
                 }
-            }
-
-            if($_POST['transaction_type'] === 'expense') {
-                $cr_row['transaction_id'] = $transaction_id;
-                $cr_row['transaction_head'] = $_POST['transaction_head'];
-                $cr_row['transaction_date'] = $_POST['transaction_date'];
-                $cr_row['cr'] = $_POST['gross_amount'];
-                $cr_row['purpose'] = $_POST['purpose'];
-                $cr_row['created_at'] = date('Y-m-d H:i:s');
-                $ress = $cc->common_insert('transaction_details', $cr_row);
+            }elseif($_POST['transaction_type'] === 'expense') {
+                $exp_row['transaction_id'] = $transaction_id;
+                $exp_row['transaction_head'] = $_POST['transaction_head'];
+                $exp_row['transaction_date'] = $_POST['transaction_date'];
+                $exp_row['cr'] = $_POST['gross_amount'];
+                $exp_row['purpose'] = $_POST['purpose'];
+                $exp_row['created_at'] = date('Y-m-d H:i:s');
+                $ress = $cc->common_insert('transaction_details', $exp_row);
 
                 
 
@@ -57,8 +55,6 @@ if (isset($_POST['transaction_date'])) {
                     $ress = $cc->common_insert('transaction_details', $cr_row);
                 }
             }
-
-
         }
 
 }
